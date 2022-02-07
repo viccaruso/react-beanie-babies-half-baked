@@ -14,14 +14,17 @@ export default function BeanieDetail() {
     async function loadBeanie() {
       const data = await getSingleBeanie(params.id);
       setCurrentBeanie(data);
+      console.log(data);
     }
 
     loadBeanie();
+    
 
   }, [params.id]); // note that you'll want the id from the url in the dependency array because you want the useEffect callback to get called every time the url changes 
 
   function handleBeanieClick() {
     // here's a challenge. How can you link on click to the beanie baby's correct entry in the official beanie baby fan site?
+    window.open(beanieBaby.link);
   }
 
   return (
@@ -29,17 +32,16 @@ export default function BeanieDetail() {
       {/* Feel free to uncomment and use the below code--but you'll need to figure out how to keep it from blowing up on load */}
       
       <Link to='/'>Home</Link>
-      <div className='beanie-detail' onClick={handleBeanieClick}>
+      <div className='beanie-detail' >
         <div className='beanie-data'>
           <p>{beanieBaby.animal}</p>
           <p>{beanieBaby.title}</p>
           <p>Zodiac: {beanieBaby.astroSign}</p>
           <p> Born on {beanieBaby.birthday}</p>
-          <img className='beanie-img' src={beanieBaby.image}/>
+          <img className='beanie-img' src={beanieBaby.image} onClick={handleBeanieClick} alt={`Click to view ${beanieBaby.title} on beaniepedia.com`}/>
           <p>Color: {beanieBaby.color}</p>
           <p>Release Date: {beanieBaby.releaseDate}</p>
           <p>Retirement Date: {beanieBaby.retirementDate}</p>
-
           <p>Size: {beanieBaby.size}</p>
           <p>Theme: {beanieBaby.theme}</p>
           <p>Sub-Theme: {beanieBaby.subtheme}</p>

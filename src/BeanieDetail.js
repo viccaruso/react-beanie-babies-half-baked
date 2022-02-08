@@ -14,7 +14,6 @@ export default function BeanieDetail() {
     async function loadBeanie() {
       const data = await getSingleBeanie(params.id);
       setCurrentBeanie(data);
-      console.log(data);
     }
 
     loadBeanie();
